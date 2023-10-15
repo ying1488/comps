@@ -29,18 +29,18 @@ function Button({
         })
     );
 
-    return <button {...rest} className={classes}>
-        {children}
-    </button>;
+    return (
+        <button {...rest} className={classes}>
+            {children}
+        </button>
+    );
 }
-
-
 
 // custom validator 
 Button.propTypes = {
     checkVariationValue: ({ primary, secondary, success, warning, danger }) => {
-        const count = Number(!!primary)
-            + Number(!!primary)
+        const count =
+            Number(!!primary)
             + Number(!!secondary)
             + Number(!!warning)
             + Number(!!success)

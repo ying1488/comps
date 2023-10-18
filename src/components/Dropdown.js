@@ -11,13 +11,16 @@ function Dropdown({ options, value, onChange }) {
             if (!divEl.current) {
                 return;
             }
+            //did user click inisde the dropdown? if outside , close drop down
             if (!divEl.current.contains(event.target)) {
                 setIsOpen(false);
             }
 
         };
-
         document.addEventListener('click', handler, true);
+        // watch for target phase , bubbling phase  AND capture phase
+        //when capture is true , we are able to capture the event in the capture phase (body --->div)
+        //before we can think about closing the drop down (before react click event handler run and close)
         return () => {//cleanup function
             document.removeEventListener('click', handler);
         };
@@ -25,10 +28,9 @@ function Dropdown({ options, value, onChange }) {
 
     const handleClick = () => {
         setIsOpen(!isOpen);
-    };
-
+    }
+        ;
     const handleOptionClick = (option) => {
-
         // close dropdown
         setIsOpen(false);
         // what option did the user click on? 
